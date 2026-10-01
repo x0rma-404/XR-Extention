@@ -3,6 +3,7 @@
     "displayName": "XR Language Support",
     "description": "Language support for the XR programming language",
     "version": "0.0.1",
+    "icon": "XR.jpg",
 
     "repository": {
         "type": "git",
