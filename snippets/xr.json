@@ -1,0 +1,75 @@
+{
+    "If / Else": {
+        "prefix": "if",
+        "body": [
+            "? ${1:sert} {",
+            "    ${2}",
+            "} : {",
+            "    ${3}",
+            "}"
+        ],
+        "description": "XR if / else"
+    },
+
+    "If": {
+        "prefix": "ifonly",
+        "body": [
+            "? ${1:sert} {",
+            "    ${2}",
+            "}"
+        ],
+        "description": "XR if"
+    },
+
+    "Loop": {
+        "prefix": "loop",
+        "body": [
+            "@ ${1:sert} {",
+            "    ${2}",
+            "}"
+        ],
+        "description": "XR loop"
+    },
+
+    "For Each": {
+        "prefix": "foreach",
+        "body": [
+            "@ ${1:x} : ${2:siyahi} {",
+            "    ${3}",
+            "}"
+        ],
+        "description": "XR for each"
+    },
+
+    "Variable Declaration": {
+        "prefix": "deyer",
+        "body": [
+            "deyer -> ${1:ad};"
+        ],
+        "description": "Declare an XR variable"
+    },
+
+    "Print": {
+        "prefix": "print",
+        "body": [
+            "> ${1:deyer};"
+        ],
+        "description": "Print a value"
+    },
+
+    "List": {
+        "prefix": "list",
+        "body": [
+            "#[${1:1, 2, 3}]"
+        ],
+        "description": "Create an XR list"
+    },
+
+    "Range": {
+        "prefix": "range",
+        "body": [
+            "${1:1}..${2:5}"
+        ],
+        "description": "Create an XR range"
+    }
+}

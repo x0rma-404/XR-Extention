@@ -1,0 +1,42 @@
+{
+  "name": "xr",
+  "displayName": "XR",
+  "description": "Language support for the XR programming language",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.138.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "xr",
+        "aliases": ["XR", "xr"],
+        "extensions": [".xr"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "xr",
+        "scopeName": "source.xr",
+        "path": "./syntaxes/xr.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "xr",
+        "path": "./snippets/xr.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "xr.runFile",
+        "title": "XR: Run File"
+      }
+    ]
+  }
+}
