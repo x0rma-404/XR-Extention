@@ -1,10 +1,31 @@
 # XR Programming Language
 
-**XR** is a small experimental programming language written in **C++**, with dedicated **Visual Studio Code** support.
+<p align="center">
+  <b>A small experimental programming language written in C++</b><br>
+  with dedicated Visual Studio Code support.
+</p>
 
-XR is designed with its own syntax rather than directly following Python, Java, or other existing programming languages.
+<p align="center">
+  <img src="https://img.shields.io/badge/language-C%2B%2B17-blue?style=for-the-badge">
+  <img src="https://img.shields.io/badge/editor-VS%20Code-007ACC?style=for-the-badge">
+  <img src="https://img.shields.io/badge/files-.xr-orange?style=for-the-badge">
+  <img src="https://img.shields.io/badge/license-MIT-green?style=for-the-badge">
+</p>
 
-The project contains a C++ interpreter and a VS Code extension that provides syntax highlighting, autocomplete, snippets, diagnostics, and file execution.
+---
+
+## About
+
+**XR** is a small experimental programming language built from scratch in **C++**.
+
+Instead of directly following the syntax of languages such as Python, Java, or C++, XR uses its own syntax and concepts.
+
+The project consists of two main parts:
+
+* **XR Interpreter** — executes `.xr` source files.
+* **XR VS Code Extension** — provides a complete development environment for XR.
+
+The goal of XR is to experiment with language design, interpreters, syntax, developer tooling, and programming-language concepts while keeping the language simple and distinctive.
 
 ---
 
@@ -12,10 +33,10 @@ The project contains a C++ interpreter and a VS Code extension that provides syn
 
 ### Language
 
-* C++ interpreter
+* C++17 interpreter
 * `.xr` source files
 * Variables
-* Conditions
+* Conditional statements
 * Loops
 * Lists
 * Ranges
@@ -26,17 +47,20 @@ The project contains a C++ interpreter and a VS Code extension that provides syn
 * Logical operators
 * String operations
 * Built-in functions
+* Comments
 
 ### Visual Studio Code
 
 * XR language recognition
 * Syntax highlighting
 * Autocomplete / IntelliSense
-* Variable autocomplete
+* Variable suggestions
+* Built-in function suggestions
 * Code snippets
 * Error diagnostics
 * Problems panel integration
 * `XR: Run File` command
+* Integrated interpreter execution
 
 ---
 
@@ -44,32 +68,39 @@ The project contains a C++ interpreter and a VS Code extension that provides syn
 
 ## Variables
 
-Variables are declared using `deyer`.
+Variables are declared using the `deyer` keyword.
 
 ```xr
 deyer -> ad;
 deyer -> yas;
 ```
 
-A value can then be assigned using `->`.
+Values are assigned using the `->` operator.
 
 ```xr
 'Xorma' -> ad;
 20 -> yas;
 ```
 
-Output:
+Variables can then be used directly:
 
 ```xr
 > ad;
 > yas;
 ```
 
+Output:
+
+```text
+Xorma
+20
+```
+
 ---
 
 ## Printing
 
-The `>` operator prints a value.
+The `>` operator is used to print a value.
 
 ```xr
 > 'Salam XR!';
@@ -91,11 +122,17 @@ Output:
 Xorma
 ```
 
+Expressions can be printed as well:
+
+```xr
+> 'Salam ' ~ ad;
+```
+
 ---
 
 # Conditions
 
-XR uses `?` for conditional statements.
+XR uses `?` to define a conditional statement.
 
 ```xr
 ? ad = 'Xorma' {
@@ -107,13 +144,27 @@ XR uses `?` for conditional statements.
 
 The `:` block represents the alternative branch.
 
+### Example
+
+```xr
+deyer -> yas;
+
+20 -> yas;
+
+? yas >= 18 {
+    > 'Yetkin';
+} : {
+    > 'Yetkin deyil';
+}
+```
+
 ---
 
 # Loops
 
 XR uses `@` for loops.
 
-A condition can be used with a loop:
+A condition can be used directly:
 
 ```xr
 @ x < 5 {
@@ -121,7 +172,7 @@ A condition can be used with a loop:
 }
 ```
 
-XR also supports iterating over a list:
+XR can also iterate over a list:
 
 ```xr
 @ x : #[1, 2, 3] {
@@ -155,11 +206,13 @@ deyer -> nums;
 #[1, 2, 3, 4, 5] -> nums;
 ```
 
+Lists can contain different values depending on the interpreter's supported types.
+
 ---
 
 # Indexing
 
-List elements can be accessed using `.`.
+List elements are accessed using `.`.
 
 ```xr
 deyer -> nums;
@@ -171,13 +224,25 @@ deyer -> nums;
 > nums.2;
 ```
 
-XR also supports variable indexes:
+Output:
+
+```text
+10
+20
+30
+```
+
+### Variable Index
+
+Indexes can also be stored in variables:
 
 ```xr
 nums.i
 ```
 
-and expressions:
+### Expression Index
+
+Expressions can be used as indexes:
 
 ```xr
 nums.(i + 1)
@@ -187,29 +252,39 @@ nums.(i + 1)
 
 # Slicing
 
-A part of a list can be selected using a range.
+XR supports selecting a section of a list using ranges.
 
 ```xr
 nums.(1..3)
 ```
 
-The range syntax uses:
+The general syntax is:
 
 ```text
 start..end
+```
+
+For example:
+
+```xr
+deyer -> nums;
+
+#[10, 20, 30, 40, 50] -> nums;
+
+> nums.(1..3);
 ```
 
 ---
 
 # Ranges
 
-XR supports ranges using `..`.
+Ranges are represented using `..`.
 
 ```xr
 1..5
 ```
 
-Ranges can be used in loops:
+Ranges can be used with loops:
 
 ```xr
 @ x : 1..5 {
@@ -217,21 +292,31 @@ Ranges can be used in loops:
 }
 ```
 
+Output:
+
+```text
+1
+2
+3
+4
+5
+```
+
 ---
 
 # Operators
 
-XR supports arithmetic, comparison, logical, concatenation, power, and assignment operators.
+XR provides operators for arithmetic, comparison, logical operations, concatenation, power, and assignment.
 
 ## Arithmetic
 
-```text
-+    Addition
--    Subtraction
-*    Multiplication
-/    Division
-%    Modulo
-```
+| Operator | Operation      |
+| -------- | -------------- |
+| `+`      | Addition       |
+| `-`      | Subtraction    |
+| `*`      | Multiplication |
+| `/`      | Division       |
+| `%`      | Modulo         |
 
 Example:
 
@@ -245,13 +330,9 @@ Example:
 
 ---
 
-## Power / Repetition
+## Power
 
-```text
-^
-```
-
-Example:
+The `^` operator is used for power / repetition.
 
 ```xr
 2 ^ 3
@@ -261,171 +342,211 @@ Example:
 
 ## Comparison
 
-```text
-=     Equal
-<>    Not equal
-<     Less than
->     Greater than
-<=    Less than or equal
->=    Greater than or equal
+| Operator | Meaning               |
+| -------- | --------------------- |
+| `=`      | Equal                 |
+| `<>`     | Not equal             |
+| `<`      | Less than             |
+| `>`      | Greater than          |
+| `<=`     | Less than or equal    |
+| `>=`     | Greater than or equal |
+
+Example:
+
+```xr
+10 > 5
+10 = 10
+5 <> 3
 ```
 
 ---
 
 ## Logical Operators
 
-```text
-&     AND
-|     OR
-!     NOT
+| Operator | Meaning |
+| -------- | ------- |
+| `&`      | AND     |
+| `\|`     | OR      |
+| `!`      | NOT     |
+
+Example:
+
+```xr
+x > 5 & x < 10
 ```
 
 ---
 
 ## Concatenation
 
-The `~` operator is used for combining values.
+The `~` operator combines values.
 
 ```xr
 'Salam ' ~ 'XR'
+```
+
+Output:
+
+```text
+Salam XR
+```
+
+Variables can also be combined:
+
+```xr
+deyer -> ad;
+
+'Xorma' -> ad;
+
+> 'Salam ' ~ ad;
 ```
 
 ---
 
 ## Assignment
 
-The `->` operator assigns a value.
+The `->` operator assigns a value to a variable.
 
 ```xr
 5 -> x;
+```
+
+For example:
+
+```xr
+deyer -> x;
+
+10 -> x;
 ```
 
 ---
 
 # Built-in Functions
 
-XR currently includes several built-in functions.
+XR currently provides the following built-in functions:
 
-```text
-uz
-qat
-cixar
-metn
-eded
-sirala
-boyuk
-kicik
-bol
-yig
-var
-```
+| Function   | Purpose                        |
+| ---------- | ------------------------------ |
+| `uz()`     | Returns the length of a value  |
+| `qat()`    | Combines two values            |
+| `cixar()`  | Performs subtraction           |
+| `metn()`   | Converts a value to text       |
+| `eded()`   | Converts a value to a number   |
+| `sirala()` | Sorts a list                   |
+| `boyuk()`  | Returns the larger value       |
+| `kicik()`  | Returns the smaller value      |
+| `bol()`    | Performs division              |
+| `yig()`    | Returns the sum of list values |
+| `var()`    | Checks whether a value exists  |
 
-## `uz`
+---
+
+## `uz()`
 
 Returns the length of a value.
 
 ```xr
-uz('XR')
+> uz('XR');
 ```
 
 ---
 
-## `qat`
+## `qat()`
 
 Combines two values.
 
 ```xr
-qat('Hello', 'XR')
+> qat('Hello', 'XR');
 ```
 
 ---
 
-## `cixar`
+## `cixar()`
 
 Performs subtraction.
 
 ```xr
-cixar(10, 3)
+> cixar(10, 3);
 ```
 
 ---
 
-## `metn`
+## `metn()`
 
 Converts a value to text.
 
 ```xr
-metn(123)
+> metn(123);
 ```
 
 ---
 
-## `eded`
+## `eded()`
 
 Converts a value to a number.
 
 ```xr
-eded('123')
+> eded('123');
 ```
 
 ---
 
-## `sirala`
+## `sirala()`
 
 Sorts a list.
 
 ```xr
-sirala(#[5, 2, 8, 1])
+> sirala(#[5, 2, 8, 1]);
 ```
 
 ---
 
-## `boyuk`
+## `boyuk()`
 
 Returns the larger value.
 
 ```xr
-boyuk(10, 20)
+> boyuk(10, 20);
 ```
 
 ---
 
-## `kicik`
+## `kicik()`
 
 Returns the smaller value.
 
 ```xr
-kicik(10, 20)
+> kicik(10, 20);
 ```
 
 ---
 
-## `bol`
+## `bol()`
 
 Performs division.
 
 ```xr
-bol(20, 4)
+> bol(20, 4);
 ```
 
 ---
 
-## `yig`
+## `yig()`
 
 Returns the sum of values in a list.
 
 ```xr
-yig(#[1, 2, 3, 4])
+> yig(#[1, 2, 3, 4]);
 ```
 
 ---
 
-## `var`
+## `var()`
 
 Checks whether a value exists.
 
 ```xr
-var(x)
+> var(x);
 ```
 
 ---
@@ -440,6 +561,8 @@ Comments begin with `//`.
 deyer -> ad;
 ```
 
+Comments are ignored by the interpreter.
+
 ---
 
 # Strings
@@ -450,10 +573,16 @@ XR uses single quotes for strings.
 'Salam XR!'
 ```
 
-Example:
+Strings can be combined using `~`.
 
 ```xr
 'Hello' ~ ' XR'
+```
+
+Output:
+
+```text
+Hello XR
 ```
 
 ---
@@ -482,11 +611,23 @@ deyer -> nums;
 }
 ```
 
+Output:
+
+```text
+Salam Xorma
+Dogru ad
+1
+2
+3
+4
+5
+```
+
 ---
 
 # Visual Studio Code Extension
 
-XR includes a Visual Studio Code extension.
+XR comes with a dedicated **Visual Studio Code extension** designed to make `.xr` development easier.
 
 The extension provides:
 
@@ -496,22 +637,154 @@ The extension provides:
 * Variable suggestions
 * Built-in function documentation
 * Code snippets
-* Problems panel diagnostics
+* Error diagnostics
+* Problems panel integration
 * XR interpreter execution
+
+---
+
+# Syntax Highlighting
+
+XR source files are automatically recognized as `.xr` files.
+
+The syntax definition is located at:
+
+```text
+vscode-extension/syntaxes/xr.tmLanguage.json
+```
+
+It provides highlighting for:
+
+* Keywords
+* Variables
+* Strings
+* Numbers
+* Operators
+* Comments
+* Built-in functions
+* Control structures
+
+---
+
+# Autocomplete
+
+The extension provides autocomplete for:
+
+* XR keywords
+* Built-in functions
+* Operators
+* Snippets
+* Declared variables
+
+For example:
+
+```xr
+deyer -> ad;
+deyer -> yas;
+
+'Xorma' -> ad;
+20 -> yas;
+```
+
+After declaring a variable, it can appear in autocomplete suggestions.
+
+Built-in functions can also display documentation:
+
+```text
+uz(value)
+
+Dəyərin uzunluğunu qaytarır
+```
+
+---
+
+# Snippets
+
+XR provides snippets for frequently used structures.
+
+### Conditional
+
+Typing:
+
+```text
+if
+```
+
+can generate:
+
+```xr
+? sert {
+    
+} : {
+    
+}
+```
+
+### Loop
+
+Typing:
+
+```text
+loop
+```
+
+can generate:
+
+```xr
+@ sert {
+    
+}
+```
+
+### Foreach
+
+Typing:
+
+```text
+foreach
+```
+
+can generate:
+
+```xr
+@ x : siyahi {
+    
+}
+```
+
+---
+
+# Error Diagnostics
+
+Interpreter errors can be displayed directly inside Visual Studio Code.
+
+For example:
+
+```xr
+> ad2;
+```
+
+If `ad2` has not been declared, the interpreter can report:
+
+```text
+Xeta: teyin olunmamis deyisen: ad2
+```
+
+The extension can forward interpreter errors to the **Problems** panel, making errors easier to locate while developing.
 
 ---
 
 # Running the Interpreter
 
-The interpreter is written in C++.
+The XR interpreter is written in **C++17**.
 
-Compile it using:
+### Compile
 
 ```bash
 g++ -std=c++17 xr.cpp -o xr.exe
 ```
 
-Then run an XR program:
+### Run
 
 ```bash
 xr.exe hello.xr
@@ -535,7 +808,7 @@ Press:
 F5
 ```
 
-This opens the **Extension Development Host**.
+This launches the **Extension Development Host**.
 
 Create or open an `.xr` file.
 
@@ -551,105 +824,9 @@ Search for:
 XR: Run File
 ```
 
-Press Enter.
+Press **Enter**.
 
-The XR interpreter will execute the current `.xr` file.
-
----
-
-# Autocomplete
-
-XR provides autocomplete for built-in functions, keywords, operators, snippets, and variables.
-
-For example:
-
-```xr
-deyer -> ad;
-deyer -> yas;
-
-'Xorma' -> ad;
-20 -> yas;
-```
-
-When writing another XR statement, the declared variables can appear in autocomplete.
-
-Built-in functions also provide descriptions such as:
-
-```text
-uz(value)
-
-Dəyərin uzunluğunu qaytarır
-```
-
----
-
-# Snippets
-
-The extension includes snippets for common XR structures.
-
-For example, typing:
-
-```text
-if
-```
-
-can generate:
-
-```xr
-? sert {
-    
-} : {
-    
-}
-```
-
-Typing:
-
-```text
-loop
-```
-
-can generate:
-
-```xr
-@ sert {
-    
-}
-```
-
-Typing:
-
-```text
-foreach
-```
-
-can generate:
-
-```xr
-@ x : siyahi {
-    
-}
-```
-
----
-
-# Error Diagnostics
-
-XR interpreter errors can appear in the Visual Studio Code Problems panel.
-
-For example:
-
-```xr
-> ad2;
-```
-
-when `ad2` has not been declared can produce:
-
-```text
-Xeta: teyin olunmamis deyisen: ad2
-```
-
-The extension can display the error directly in the editor.
+The extension will execute the current XR file using the XR interpreter.
 
 ---
 
@@ -687,7 +864,7 @@ XR/
 
 # Examples
 
-Example programs are located in:
+Example programs can be found in:
 
 ```text
 examples/
@@ -702,29 +879,39 @@ conditions.xr
 loops.xr
 ```
 
+These examples demonstrate the basic features of the language.
+
 ---
 
 # Development
 
-The interpreter is implemented in:
+### Interpreter
+
+The XR interpreter is implemented in:
 
 ```text
 interpreter/xr.cpp
 ```
 
-The Visual Studio Code extension is implemented in:
+### VS Code Extension
+
+The extension logic is implemented in:
 
 ```text
 vscode-extension/extension.js
 ```
 
-The XR syntax definition is located at:
+### Language Definition
+
+Syntax highlighting is defined in:
 
 ```text
 vscode-extension/syntaxes/xr.tmLanguage.json
 ```
 
-Snippets are located at:
+### Snippets
+
+Code snippets are located at:
 
 ```text
 vscode-extension/snippets/xr.json
@@ -734,11 +921,68 @@ vscode-extension/snippets/xr.json
 
 # Project Status
 
-XR is currently an experimental programming language project.
+XR is currently an **experimental programming language project**.
 
-The current version includes a working interpreter and Visual Studio Code development environment.
+The current version includes:
 
-The language and tooling may change as the project develops.
+* A working C++ interpreter
+* A custom programming-language syntax
+* `.xr` source files
+* Lists and ranges
+* Conditions and loops
+* Built-in functions
+* VS Code syntax highlighting
+* Autocomplete
+* Snippets
+* Diagnostics
+* File execution through VS Code
+
+The language and development tools are still evolving, and syntax or features may change in future versions.
+
+---
+
+# Roadmap
+
+Potential future improvements include:
+
+* [ ] User-defined functions
+* [ ] More data types
+* [ ] Better type handling
+* [ ] Improved error messages
+* [ ] More advanced IntelliSense
+* [ ] Debugging support
+* [ ] Package / module system
+* [ ] Standard library
+* [ ] Better runtime error locations
+* [ ] XR language server
+* [ ] Cross-platform interpreter builds
+* [ ] VS Code Marketplace release
+
+---
+
+# Why XR?
+
+XR is not intended to replace established programming languages.
+
+It is a project for exploring how a programming language works from the inside:
+
+```text
+Source Code
+     │
+     ▼
+   Lexer
+     │
+     ▼
+   Parser
+     │
+     ▼
+ Interpreter
+     │
+     ▼
+   Output
+```
+
+At the same time, the VS Code extension demonstrates how a custom language can be integrated into a modern development environment.
 
 ---
 
@@ -748,12 +992,10 @@ The language and tooling may change as the project develops.
 
 GitHub:
 
-```text
-https://github.com/x0rma-404
-```
+[x0rma-404](https://github.com/x0rma-404?utm_source=chatgpt.com)
 
 ---
 
 # License
 
-MIT License
+This project is licensed under the **MIT License**.
