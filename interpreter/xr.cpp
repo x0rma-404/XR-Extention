@@ -1,4 +1,4 @@
-// Oz dilimiz v3 - Python-a oxsamayan sintaksis
+// XR language
 
 //
 //   deyer -> ad;              menimsetme elan etme
