@@ -1,0 +1,11 @@
+{
+    "iconDefinitions": {
+        "_xr": {
+            "iconPath": "./XR.jpg"
+        }
+    },
+
+    "fileExtensions": {
+        "xr": "_xr"
+    }
+}

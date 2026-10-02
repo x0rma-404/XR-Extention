@@ -3,6 +3,7 @@
     "displayName": "XR Language Support",
     "description": "Language support for the XR programming language",
     "version": "0.0.1",
+
     "icon": "XR.jpg",
 
     "repository": {
@@ -59,6 +60,14 @@
             {
                 "language": "xr",
                 "path": "./snippets/xr.json"
+            }
+        ],
+
+        "iconThemes": [
+            {
+                "id": "xr-icons",
+                "label": "XR Icons",
+                "path": "./xr-icon-theme.json"
             }
         ]
     }

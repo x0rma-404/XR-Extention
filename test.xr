@@ -1,0 +1,262 @@
+// ==========================================
+// XR COMPLEX TEST
+// ==========================================
+
+// 1. Variables
+
+deyer -> ad;
+deyer -> yas;
+deyer -> bal;
+deyer -> count;
+
+'Xorma' -> ad;
+25 -> yas;
+95 -> bal;
+0 -> count;
+
+> '=== XR PROGRAM ===';
+
+> 'Ad: ' ~ ad;
+> 'Yas: ' ~ yas;
+> 'Bal: ' ~ bal;
+
+
+// 2. Arithmetic
+
+deyer -> a;
+deyer -> b;
+deyer -> netice;
+
+10 -> a;
+5 -> b;
+
+a + b -> netice;
+> 'Toplama: ' ~ netice;
+
+a - b -> netice;
+> 'Cixma: ' ~ netice;
+
+a * b -> netice;
+> 'Vurma: ' ~ netice;
+
+a / b -> netice;
+> 'Bolme: ' ~ netice;
+
+a % b -> netice;
+> 'Qaliq: ' ~ netice;
+
+2 ^ 5 -> netice;
+> 'Quvvet: ' ~ netice;
+
+
+// 3. Conditions
+
+? yas > 18 {
+
+    > 'Yetkindir';
+
+} : {
+
+    > 'Yetkin deyil';
+
+}
+
+
+? bal = 100 {
+
+    > 'Mukemmel';
+
+} : ? bal > 80 {
+
+    > 'Cox yaxsi';
+
+} : ? bal > 60 {
+
+    > 'Yaxsi';
+
+} : {
+
+    > 'Kesildi';
+
+}
+
+
+// 4. Logical operators
+
+? yas > 18 & bal > 50 {
+
+    > 'Her iki sert dogrudur';
+
+}
+
+? yas < 18 | bal > 90 {
+
+    > 'En azi bir sert dogrudur';
+
+}
+
+? !(yas < 18) {
+
+    > 'Yas 18-den kicik deyil';
+
+}
+
+
+// 5. Lists
+
+deyer -> nums;
+
+#[10, 20, 30, 40, 50] -> nums;
+
+> 'List:';
+> nums;
+
+> 'Ilk element:';
+> nums.0;
+
+> 'Ikinci element:';
+> nums.1;
+
+> 'Son element:';
+> nums.$;
+
+
+// 6. List modification
+
+99 -> nums.0;
+
+> 'Deyisdirilmis list:';
+> nums;
+
+
+// 7. Slicing
+
+> 'Orta elementler:';
+> nums.(1..3);
+
+> 'Ilk hisse:';
+> nums.(..2);
+
+> 'Son hisse:';
+> nums.(2..$);
+
+
+// 8. Ranges
+
+> 'Artan range:';
+> 1..5;
+
+> 'Azalan range:';
+> 5..1;
+
+
+// 9. While loop
+
+deyer -> i;
+
+0 -> i;
+
+@ i < 5 {
+
+    > i;
+
+    i + 1 -> i;
+
+}
+
+
+// 10. For each list
+
+@ x : nums {
+
+    > 'Element: ' ~ x;
+
+}
+
+
+// 11. For each range
+
+@ r : 1..5 {
+
+    > r;
+
+}
+
+
+// 12. String iteration
+
+deyer -> soz;
+
+'XR' -> soz;
+
+@ herf : soz {
+
+    > herf;
+
+}
+
+
+// 13. Nested conditions + loop
+
+deyer -> score;
+
+85 -> score;
+
+@ score > 0 {
+
+    ? score > 80 {
+
+        > 'Score yuksekdir';
+
+    } : {
+
+        > 'Score asagidir';
+
+    }
+
+    score - 20 -> score;
+
+}
+
+
+// 14. Concatenation
+
+deyer -> mesaj;
+
+'Salam' -> mesaj;
+
+> mesaj ~ ' Xorma';
+> mesaj ~ ' XR';
+
+
+// 15. String repetition
+
+> 'XR ' ^ 5;
+
+
+// 16. Multiple calculations
+
+deyer -> x;
+deyer -> y;
+deyer -> z;
+
+7 -> x;
+3 -> y;
+
+x * y + 10 -> z;
+
+> 'Netice:';
+> z;
+
+
+// 17. Final test
+
+? z > 20 & yas > 18 {
+
+    > 'XR test ugurla bitdi';
+
+} : {
+
+    > 'XR testinde problem var';
+
+}

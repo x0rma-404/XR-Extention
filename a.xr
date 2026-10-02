@@ -1,0 +1,19 @@
+// XR numunesi
+
+deyer -> ad;
+deyer -> nums;
+
+'Xorma' -> ad;
+#[1, 2, 3, 4, 5] -> nums;
+
+> 'Salam ' ~ ad;
+
+? ad = 'Xorma' {
+    > 'Dogru ad';
+} : {
+    > 'Yanlis ad';
+}
+
+@ x : nums {
+    > x;
+}
